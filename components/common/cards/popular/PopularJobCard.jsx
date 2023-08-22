@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, Pressable, Image } from 'react-native'
 
 import styles from './popularjobcard.style'
 
@@ -7,11 +7,11 @@ import { checkImageUrl } from '../../../../utils/checkImage'
 
 const PopularJobCard = ({item, selectedJob, handleCardPress}) => {
   return (
-    <TouchableOpacity
+    <Pressable
       style={styles.container(selectedJob, item)}
       onPress={() => handleCardPress(item)}
     >
-      <TouchableOpacity style={styles.logoContainer(selectedJob, item)}>
+      <Pressable style={styles.logoContainer(selectedJob, item)}>
         <Image
           source={{ uri: checkImageUrl(item.employer_logo) ?
             item.employer_logo : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
@@ -19,7 +19,7 @@ const PopularJobCard = ({item, selectedJob, handleCardPress}) => {
           resizeMode='contain'
           style={styles.logoImage}
         />
-      </TouchableOpacity>
+      </Pressable>
       <Text style={styles.companyName} numberOfLines={1}>{item.employer_name}</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.jobName(selectedJob, item)} numberOfLines={1}>
@@ -27,7 +27,7 @@ const PopularJobCard = ({item, selectedJob, handleCardPress}) => {
         </Text>
         <Text style={styles.location}>{item.job_country}({item.job_is_remote ? 'Remote' : 'Onsite'})</Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   )
 }
 

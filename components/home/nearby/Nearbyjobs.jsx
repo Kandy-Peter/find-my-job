@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, Pressable, ActivityIndicator } from "react-native";
 
 import { useRouter } from "expo-router";
 
@@ -20,9 +20,9 @@ const Nearbyjobs = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Nearby Jobs</Text>
-        <TouchableOpacity>
+        <Pressable>
           <Text style={styles.headerBtn}>Show all</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
 
       <View style={styles.cardsContainer}>

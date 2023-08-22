@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import { Text, View, SafeAreaView, ActivityIndicator, RefreshControl } from 'react-native'
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 
@@ -14,9 +14,7 @@ const JobDeatils = () => {
   const params = useLocalSearchParams();
   const router = useRouter();
 
-  const { data, error, isLoading } = useFetch('job-details', {job_id: params.id});
-
-
+  const { data, error, isLoading, refetch } = useFetch('job-details', {job_id: params.id});
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
@@ -48,7 +46,11 @@ const JobDeatils = () => {
     }
   };
 
-  const onRefresh = () => {}
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
