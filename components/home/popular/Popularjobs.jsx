@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -22,6 +22,10 @@ const Popularjobs = () => {
     num_page: 1
   })
 
+  const [selectedJob, setSelectedJob] = React.useState()
+
+  const handleCardPress = (item) => {}
+
   return (
     <View style={styles.container} >
       <View style={styles.header}>
@@ -43,6 +47,8 @@ const Popularjobs = () => {
             renderItem={({item}) => (
               <PopularJobCard
                 item={item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
               />
             )}
             keyExtractor={item => item?.job_id || item}
